@@ -1,0 +1,19 @@
+.item-main {
+    display: grid;
+    grid-template-columns: repeat(5, 6rem);
+}
+
+.sub {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+}
+.selected {
+    font-weight: bold;
+}
+
+
+.icon {
+    height: 2rem;
+    padding-left: 2rem;
+}

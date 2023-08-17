@@ -1,0 +1,33 @@
+<div class="primary" *ngIf="primaryDisplay">
+    <h3>5 Days Forecast</h3>
+    <ul *ngFor="let forecast of weatherData; let i = index">
+        <li class="item-main" (click)="toggle(weatherData[i], i)">
+            {{forecast.dt_txt | date:'EEE, MMM'}}
+            <img class="icon" src="assets/images/{{ forecast.weather[0].icon}}.png" alt="weather icon" />
+            <span>
+                {{forecast.main.temp_min | number:'1.0-0'}}°<sup>c</sup> |
+                {{forecast.main.temp_max | number:'1.0-0'}}°<sup>c</sup>
+            </span>
+            <span>
+                {{forecast.weather[0].main}}
+                <i class="fa fa-caret-down" aria-hidden="true"></i>
+            </span>
+        </li>
+    </ul>
+</div>
+<div *ngIf="secondaryDisplay">
+    <h3>5 Days Forecast</h3>
+    <ul class="sub">
+        <li *ngFor="let forecast of weatherData; let i = index" [ngClass]="{'selected': selectedIndex == i}">
+            <span (click)="showDetails(forecast)">{{ forecast.dt_txt | date: 'EEE' }}</span>
+        <i class="fa fa-caret-up" aria-hidden="true" (click)="toggle(weatherData[i], i)"></i>
+
+        </li>
+    </ul>
+    <div >
+        {{ forecastDetails.main.temp | number:'1.0-0'}}°<sup>c</sup>
+        <br />Humidity: {{ forecastDetails.main.humidity}}%
+        <br />Wind Speed: {{ forecastDetails.wind.speed}} Km/h
+        <br />Wind Degree: {{ forecastDetails.wind.deg}}
+    </div>
+</div>
